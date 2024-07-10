@@ -78,6 +78,8 @@ def game_over_animation():
         dis.fill(background_color)
         pygame.display.update()
         time.sleep(0.1)
+    start_screen()
+    gameLoop()
 
 
 def start_screen():
@@ -115,8 +117,9 @@ def gameLoop():
             message("Пауза. Нажмите 'P' для продолжения", white)
             pygame.display.update()
             for event in pygame.event.get():
-                if event.type == pygame.KEYDOWN and event.type == pygame.K_p:
-                    paused = False
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_p:
+                        paused = False
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -142,7 +145,7 @@ def gameLoop():
         #  Проверка столкновения змейки с границами игрового поля
         if x1 >= dis_width or x1 < 0 or y1 >= dis_height or y1 < 0:
             game_over_animation()
-            start_screen()
+            break
 
         x1 += x1_change
         y1 += y1_change
@@ -158,7 +161,7 @@ def gameLoop():
         for x in snake_list[:-1]:
             if x == snake_Head:
                 game_over_animation()
-                start_screen()
+                break
 
         our_snake(snake_block, snake_list)
         display_score(score)
