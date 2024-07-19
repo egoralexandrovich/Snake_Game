@@ -106,8 +106,8 @@ def gameLoop():
     snake_list = []
     length_of_snake = 1
 
-    foodx = round(random.randrange(0, dis_width - snake_block) / 20.0) * 20.0
-    foody = round(random.randrange(0, dis_height - snake_block) / 20.0) * 20.0
+    food_x = round(random.randrange(0, dis_width - snake_block) / 20.0) * 20.0
+    food_y = round(random.randrange(0, dis_height - snake_block) / 20.0) * 20.0
 
     score = 0
     paused = False
@@ -150,7 +150,7 @@ def gameLoop():
         x1 += x1_change
         y1 += y1_change
         dis.fill(background_color)
-        pygame.draw.rect(dis, food_color, [foodx, foody, snake_block, snake_block], border_radius=4)
+        pygame.draw.rect(dis, food_color, [food_x, food_y, snake_block, snake_block], border_radius=4)
 
         snake_Head = [x1, y1]
         snake_list.append(snake_Head)
@@ -170,9 +170,9 @@ def gameLoop():
         pygame.display.update()
 
         #  Проверка съедения змейкой еды
-        if x1 == foodx and y1 == foody:
-            foodx = round(random.randrange(0, dis_width - snake_block) / 20.0) * 20.0
-            foody = round(random.randrange(0, dis_height - snake_block) / 20.0) * 20.0
+        if x1 == food_x and y1 == food_y:
+            food_x = round(random.randrange(0, dis_width - snake_block) / 20.0) * 20.0
+            food_y = round(random.randrange(0, dis_height - snake_block) / 20.0) * 20.0
             length_of_snake += 1
             score += 1
             if score > high_score:
